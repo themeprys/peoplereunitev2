@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "naskahs",
+  "info": {
+    "singularName": "naskah",
+    "pluralName": "naskahs",
+    "displayName": "Naskah",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Judul": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Judul"
+    },
+    "Subjudul": {
+      "type": "string"
+    },
+    "Body": {
+      "type": "richtext",
+      "required": true
+    },
+    "Player": {
+      "type": "text"
+    },
+    "MetaDescription": {
+      "type": "text"
+    },
+    "Kanal": {
+      "type": "string"
+    },
+    "KanalUrl": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "CreditImage": {
+      "type": "string"
+    },
+    "Headline": {
+      "type": "boolean",
+      "default": false
+    },
+    "kontributors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::kontributor.kontributor",
+      "inversedBy": "naskahs"
+    },
+    "kategori": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::kategori.kategori"
+    },
+    "PublishedDate": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "@quasar/apollo": {
+    "graphql_uri": "https://api.peoplereunite.id/graphql"
+  },
+  "@quasar/qmarkdown": {
+    "import_md": true,
+    "import_vmd": true
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">People Reunite</string>
+    <string name="title_activity_main">People Reunite</string>
+    <string name="package_name">peoplereunite.us.app</string>
+    <string name="custom_url_scheme">peoplereunite.us.app</string>
+</resources>

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kontributors",
+  "info": {
+    "singularName": "kontributor",
+    "pluralName": "kontributors",
+    "displayName": "Kontributor",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nama": {
+      "type": "string",
+      "required": true
+    },
+    "Bio": {
+      "type": "richtext",
+      "required": false
+    },
+    "Avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "naskahs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::naskah.naskah",
+      "mappedBy": "kontributors"
+    }
+  }
+}

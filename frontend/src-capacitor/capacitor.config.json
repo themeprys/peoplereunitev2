@@ -1,0 +1,7 @@
+{
+  "appId": "peoplereunite.us.app",
+  "appName": "People Reunite",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}

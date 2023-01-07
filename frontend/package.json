@@ -1,0 +1,55 @@
+{
+  "name": "peoplereunite",
+  "version": "0.0.1",
+  "description": "People Reunite Web App",
+  "productName": "People Reunite",
+  "author": "Prys Pry",
+  "private": true,
+  "scripts": {
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && quasar dev -m ssr",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && quasar build -m ssr",
+    "start": "node dist/ssr/index.js",
+    "deploy:fresh": "git pull && quasar build -m ssr && yarn deploy:ssr-pm2_restart",
+    "deploy:ssr-pm2": "pm2 start ./dist/ssr/index.js --name quasar-ssr",
+    "deploy:ssr-pm2_clusterize": "pm2 start ./dist/ssr/index.js --name quasar-ssr -i max",
+    "deploy:ssr-pm2_watch": "pm2 start ./dist/ssr/index.js --name quasar-ssr --watch ./dist/ssr",
+    "deploy:ssr-pm2_deep-monitoring": "pm2 start ./dist/ssr/index.js --name quasar-ssr --deep-monitoring",
+    "deploy:ssr-pm2_restart": "pm2 restart quasar-ssr",
+    "deploy:ssr-pm2_stop": "pm2 stop quasar-ssr",
+    "deploy:ssr-pm2_monitor": "pm2 monitor quasar-ssr",
+    "deploy:ssr-pm2_unmonitor": "pm2 unmonitor quasar-ssr",
+    "deploy:ssr-pm2_kill": "pm2 kill"
+  },
+  "dependencies": {
+    "@quasar/cli": "^1.2.1",
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "quasar": "^1.0.0",
+    "vue-google-adsense": "^1.9.3",
+    "vue-script2": "^2.1.0",
+    "vue-social-sharing": "^3.0.7"
+  },
+  "devDependencies": {
+    "@quasar/app": "^2.0.0",
+    "@quasar/quasar-app-extension-apollo": "^1.0.0-beta.8",
+    "@quasar/quasar-app-extension-qmarkdown": "^1.4.1",
+    "workbox-webpack-plugin": "^5.0.0"
+  },
+  "browserslist": [
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
