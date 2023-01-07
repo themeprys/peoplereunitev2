@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "naskahs",
+  "info": {
+    "name": "Naskah",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Judul": {
+      "type": "string",
+      "required": true
+    },
+    "Subjudul": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Judul"
+    },
+    "Body": {
+      "type": "richtext"
+    },
+    "Player": {
+      "type": "text"
+    },
+    "kontributors": {
+      "collection": "kontributor",
+      "via": "naskahs",
+      "dominant": true
+    },
+    "Published": {
+      "type": "datetime"
+    },
+    "MetaDescription": {
+      "type": "text"
+    },
+    "Keywords": {
+      "type": "text"
+    },
+    "Kanal": {
+      "type": "string"
+    },
+    "KanalUrl": {
+      "type": "string"
+    },
+    "Kategori": {
+      "model": "kategori"
+    },
+    "Cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "Credit": {
+      "type": "text"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "naskahs",
+      "dominant": true
+    },
+    "Headline": {
+      "type": "boolean"
+    }
+  }
+}

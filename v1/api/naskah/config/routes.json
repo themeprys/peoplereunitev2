@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/naskahs",
+      "handler": "naskah.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/naskahs/count",
+      "handler": "naskah.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/naskahs/:id",
+      "handler": "naskah.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/naskahs",
+      "handler": "naskah.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/naskahs/:id",
+      "handler": "naskah.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/naskahs/:id",
+      "handler": "naskah.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

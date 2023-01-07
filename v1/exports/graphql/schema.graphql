@@ -1,0 +1,1206 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type Kategori {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Judul: String!
+  published_at: DateTime
+}
+
+type KategoriConnection {
+  values: [Kategori]
+  groupBy: KategoriGroupBy
+  aggregate: KategoriAggregator
+}
+
+type KategoriAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type KategoriGroupBy {
+  id: [KategoriConnectionId]
+  _id: [KategoriConnection_id]
+  createdAt: [KategoriConnectionCreatedAt]
+  updatedAt: [KategoriConnectionUpdatedAt]
+  Judul: [KategoriConnectionJudul]
+  published_at: [KategoriConnectionPublished_at]
+}
+
+type KategoriConnectionId {
+  key: ID
+  connection: KategoriConnection
+}
+
+type KategoriConnection_id {
+  key: ID
+  connection: KategoriConnection
+}
+
+type KategoriConnectionCreatedAt {
+  key: DateTime
+  connection: KategoriConnection
+}
+
+type KategoriConnectionUpdatedAt {
+  key: DateTime
+  connection: KategoriConnection
+}
+
+type KategoriConnectionJudul {
+  key: String
+  connection: KategoriConnection
+}
+
+type KategoriConnectionPublished_at {
+  key: DateTime
+  connection: KategoriConnection
+}
+
+input KategoriInput {
+  Judul: String!
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editKategoriInput {
+  Judul: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createKategoriInput {
+  data: KategoriInput
+}
+
+type createKategoriPayload {
+  kategori: Kategori
+}
+
+input updateKategoriInput {
+  where: InputID
+  data: editKategoriInput
+}
+
+type updateKategoriPayload {
+  kategori: Kategori
+}
+
+input deleteKategoriInput {
+  where: InputID
+}
+
+type deleteKategoriPayload {
+  kategori: Kategori
+}
+
+type Kontributor {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Nama: String
+  Bio: String
+  Avatar: UploadFile
+  published_at: DateTime
+  naskahs(sort: String, limit: Int, start: Int, where: JSON): [Naskah]
+}
+
+type KontributorConnection {
+  values: [Kontributor]
+  groupBy: KontributorGroupBy
+  aggregate: KontributorAggregator
+}
+
+type KontributorAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type KontributorGroupBy {
+  id: [KontributorConnectionId]
+  _id: [KontributorConnection_id]
+  createdAt: [KontributorConnectionCreatedAt]
+  updatedAt: [KontributorConnectionUpdatedAt]
+  Nama: [KontributorConnectionNama]
+  Bio: [KontributorConnectionBio]
+  Avatar: [KontributorConnectionAvatar]
+  published_at: [KontributorConnectionPublished_at]
+}
+
+type KontributorConnectionId {
+  key: ID
+  connection: KontributorConnection
+}
+
+type KontributorConnection_id {
+  key: ID
+  connection: KontributorConnection
+}
+
+type KontributorConnectionCreatedAt {
+  key: DateTime
+  connection: KontributorConnection
+}
+
+type KontributorConnectionUpdatedAt {
+  key: DateTime
+  connection: KontributorConnection
+}
+
+type KontributorConnectionNama {
+  key: String
+  connection: KontributorConnection
+}
+
+type KontributorConnectionBio {
+  key: String
+  connection: KontributorConnection
+}
+
+type KontributorConnectionAvatar {
+  key: ID
+  connection: KontributorConnection
+}
+
+type KontributorConnectionPublished_at {
+  key: DateTime
+  connection: KontributorConnection
+}
+
+input KontributorInput {
+  Nama: String
+  Bio: String
+  Avatar: ID
+  naskahs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editKontributorInput {
+  Nama: String
+  Bio: String
+  Avatar: ID
+  naskahs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createKontributorInput {
+  data: KontributorInput
+}
+
+type createKontributorPayload {
+  kontributor: Kontributor
+}
+
+input updateKontributorInput {
+  where: InputID
+  data: editKontributorInput
+}
+
+type updateKontributorPayload {
+  kontributor: Kontributor
+}
+
+input deleteKontributorInput {
+  where: InputID
+}
+
+type deleteKontributorPayload {
+  kontributor: Kontributor
+}
+
+type Naskah {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Judul: String!
+  Subjudul: String
+  slug: String
+  Body: String
+  Player: String
+  Published: DateTime
+  MetaDescription: String
+  Keywords: String
+  Kanal: String
+  KanalUrl: String
+  Kategori: Kategori
+  Cover: UploadFile
+  Credit: String
+  Headline: Boolean
+  published_at: DateTime
+  kontributors(sort: String, limit: Int, start: Int, where: JSON): [Kontributor]
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+}
+
+type NaskahConnection {
+  values: [Naskah]
+  groupBy: NaskahGroupBy
+  aggregate: NaskahAggregator
+}
+
+type NaskahAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NaskahGroupBy {
+  id: [NaskahConnectionId]
+  _id: [NaskahConnection_id]
+  createdAt: [NaskahConnectionCreatedAt]
+  updatedAt: [NaskahConnectionUpdatedAt]
+  Judul: [NaskahConnectionJudul]
+  Subjudul: [NaskahConnectionSubjudul]
+  slug: [NaskahConnectionSlug]
+  Body: [NaskahConnectionBody]
+  Player: [NaskahConnectionPlayer]
+  Published: [NaskahConnectionPublished]
+  MetaDescription: [NaskahConnectionMetaDescription]
+  Keywords: [NaskahConnectionKeywords]
+  Kanal: [NaskahConnectionKanal]
+  KanalUrl: [NaskahConnectionKanalUrl]
+  Kategori: [NaskahConnectionKategori]
+  Cover: [NaskahConnectionCover]
+  Credit: [NaskahConnectionCredit]
+  Headline: [NaskahConnectionHeadline]
+  published_at: [NaskahConnectionPublished_at]
+}
+
+type NaskahConnectionId {
+  key: ID
+  connection: NaskahConnection
+}
+
+type NaskahConnection_id {
+  key: ID
+  connection: NaskahConnection
+}
+
+type NaskahConnectionCreatedAt {
+  key: DateTime
+  connection: NaskahConnection
+}
+
+type NaskahConnectionUpdatedAt {
+  key: DateTime
+  connection: NaskahConnection
+}
+
+type NaskahConnectionJudul {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionSubjudul {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionSlug {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionBody {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionPlayer {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionPublished {
+  key: DateTime
+  connection: NaskahConnection
+}
+
+type NaskahConnectionMetaDescription {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionKeywords {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionKanal {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionKanalUrl {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionKategori {
+  key: ID
+  connection: NaskahConnection
+}
+
+type NaskahConnectionCover {
+  key: ID
+  connection: NaskahConnection
+}
+
+type NaskahConnectionCredit {
+  key: String
+  connection: NaskahConnection
+}
+
+type NaskahConnectionHeadline {
+  key: Boolean
+  connection: NaskahConnection
+}
+
+type NaskahConnectionPublished_at {
+  key: DateTime
+  connection: NaskahConnection
+}
+
+input NaskahInput {
+  Judul: String!
+  Subjudul: String
+  slug: String
+  Body: String
+  Player: String
+  kontributors: [ID]
+  Published: DateTime
+  MetaDescription: String
+  Keywords: String
+  Kanal: String
+  KanalUrl: String
+  Kategori: ID
+  Cover: ID
+  Credit: String
+  tags: [ID]
+  Headline: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editNaskahInput {
+  Judul: String
+  Subjudul: String
+  slug: String
+  Body: String
+  Player: String
+  kontributors: [ID]
+  Published: DateTime
+  MetaDescription: String
+  Keywords: String
+  Kanal: String
+  KanalUrl: String
+  Kategori: ID
+  Cover: ID
+  Credit: String
+  tags: [ID]
+  Headline: Boolean
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createNaskahInput {
+  data: NaskahInput
+}
+
+type createNaskahPayload {
+  naskah: Naskah
+}
+
+input updateNaskahInput {
+  where: InputID
+  data: editNaskahInput
+}
+
+type updateNaskahPayload {
+  naskah: Naskah
+}
+
+input deleteNaskahInput {
+  where: InputID
+}
+
+type deleteNaskahPayload {
+  naskah: Naskah
+}
+
+type Tag {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Title: String
+  slug: String
+  published_at: DateTime
+  naskahs(sort: String, limit: Int, start: Int, where: JSON): [Naskah]
+}
+
+type TagConnection {
+  values: [Tag]
+  groupBy: TagGroupBy
+  aggregate: TagAggregator
+}
+
+type TagAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TagGroupBy {
+  id: [TagConnectionId]
+  _id: [TagConnection_id]
+  createdAt: [TagConnectionCreatedAt]
+  updatedAt: [TagConnectionUpdatedAt]
+  Title: [TagConnectionTitle]
+  slug: [TagConnectionSlug]
+  published_at: [TagConnectionPublished_at]
+}
+
+type TagConnectionId {
+  key: ID
+  connection: TagConnection
+}
+
+type TagConnection_id {
+  key: ID
+  connection: TagConnection
+}
+
+type TagConnectionCreatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionUpdatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionTitle {
+  key: String
+  connection: TagConnection
+}
+
+type TagConnectionSlug {
+  key: String
+  connection: TagConnection
+}
+
+type TagConnectionPublished_at {
+  key: DateTime
+  connection: TagConnection
+}
+
+input TagInput {
+  Title: String
+  slug: String
+  naskahs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editTagInput {
+  Title: String
+  slug: String
+  naskahs: [ID]
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createTagInput {
+  data: TagInput
+}
+
+type createTagPayload {
+  tag: Tag
+}
+
+input updateTagInput {
+  where: InputID
+  data: editTagInput
+}
+
+type updateTagPayload {
+  tag: Tag
+}
+
+input deleteTagInput {
+  where: InputID
+}
+
+type deleteTagPayload {
+  tag: Tag
+}
+
+type I18NLocale {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  Nama: String
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  _id: [UsersPermissionsUserConnection_id]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  Nama: [UsersPermissionsUserConnectionNama]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionNama {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  Nama: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  Nama: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Kategori | KategoriConnection | KategoriAggregator | KategoriGroupBy | KategoriConnectionId | KategoriConnection_id | KategoriConnectionCreatedAt | KategoriConnectionUpdatedAt | KategoriConnectionJudul | KategoriConnectionPublished_at | createKategoriPayload | updateKategoriPayload | deleteKategoriPayload | Kontributor | KontributorConnection | KontributorAggregator | KontributorGroupBy | KontributorConnectionId | KontributorConnection_id | KontributorConnectionCreatedAt | KontributorConnectionUpdatedAt | KontributorConnectionNama | KontributorConnectionBio | KontributorConnectionAvatar | KontributorConnectionPublished_at | createKontributorPayload | updateKontributorPayload | deleteKontributorPayload | Naskah | NaskahConnection | NaskahAggregator | NaskahGroupBy | NaskahConnectionId | NaskahConnection_id | NaskahConnectionCreatedAt | NaskahConnectionUpdatedAt | NaskahConnectionJudul | NaskahConnectionSubjudul | NaskahConnectionSlug | NaskahConnectionBody | NaskahConnectionPlayer | NaskahConnectionPublished | NaskahConnectionMetaDescription | NaskahConnectionKeywords | NaskahConnectionKanal | NaskahConnectionKanalUrl | NaskahConnectionKategori | NaskahConnectionCover | NaskahConnectionCredit | NaskahConnectionHeadline | NaskahConnectionPublished_at | createNaskahPayload | updateNaskahPayload | deleteNaskahPayload | Tag | TagConnection | TagAggregator | TagGroupBy | TagConnectionId | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionTitle | TagConnectionSlug | TagConnectionPublished_at | createTagPayload | updateTagPayload | deleteTagPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionNama | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  kategori(id: ID!, publicationState: PublicationState): Kategori
+  kategoris(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Kategori]
+  kategorisConnection(sort: String, limit: Int, start: Int, where: JSON): KategoriConnection
+  kontributor(id: ID!, publicationState: PublicationState): Kontributor
+  kontributors(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Kontributor]
+  kontributorsConnection(sort: String, limit: Int, start: Int, where: JSON): KontributorConnection
+  naskah(id: ID!, publicationState: PublicationState): Naskah
+  naskahs(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Naskah]
+  naskahsConnection(sort: String, limit: Int, start: Int, where: JSON): NaskahConnection
+  tag(id: ID!, publicationState: PublicationState): Tag
+  tags(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Tag]
+  tagsConnection(sort: String, limit: Int, start: Int, where: JSON): TagConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createKategori(input: createKategoriInput): createKategoriPayload
+  updateKategori(input: updateKategoriInput): updateKategoriPayload
+  deleteKategori(input: deleteKategoriInput): deleteKategoriPayload
+  createKontributor(input: createKontributorInput): createKontributorPayload
+  updateKontributor(input: updateKontributorInput): updateKontributorPayload
+  deleteKontributor(input: deleteKontributorInput): deleteKontributorPayload
+  createNaskah(input: createNaskahInput): createNaskahPayload
+  updateNaskah(input: updateNaskahInput): updateNaskahPayload
+  deleteNaskah(input: deleteNaskahInput): deleteNaskahPayload
+  createTag(input: createTagInput): createTagPayload
+  updateTag(input: updateTagInput): updateTagPayload
+  deleteTag(input: deleteTagInput): deleteTagPayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
