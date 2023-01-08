@@ -17,13 +17,13 @@
                             <q-route-tab exact class="text-uppercase" label="Essay" to="/essay" />
                             <q-route-tab exact class="text-uppercase" label="About" to="/about" />
                             <!-- <q-route-tab exact class="text-uppercase" label="Subscribe" to="/subscribe" /> -->
-                        <q-toggle unchecked-icon="fa fa-times" checked-icon="fa fa-moon" class="desktop-only ppl_darkmode" style="width: 60px" v-model="dark" @input="changeDarkMode" color="dark" id="ppl_darkdesktop"></q-toggle>
+                        <q-toggle unchecked-icon="fa fa-moon" checked-icon="fa fa-moon" class="desktop-only ppl_darkmode" style="width: 60px" v-model="dark" @input="changeDarkMode" color="dark" id="ppl_darkdesktop"></q-toggle>
 
                         </q-tabs>
     
                     </div>
     
-                    <q-toggle unchecked-icon="fa fa-times" checked-icon="fa fa-moon" class="mobile-only ppl_darkmode" style="width: 60px" v-model="dark" @input="changeDarkMode" color="dark" id="ppl_darkmobile"></q-toggle>
+                    <q-toggle unchecked-icon="fa fa-moon" checked-icon="fa fa-moon" class="mobile-only ppl_darkmode" style="width: 60px" v-model="dark" @input="changeDarkMode" color="dark" id="ppl_darkmobile"></q-toggle>
     
                 </q-toolbar-title>
             </q-toolbar>

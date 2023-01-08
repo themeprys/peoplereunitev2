@@ -155,7 +155,7 @@ export default {
     },
     filters: {
         tanggalPublikasi: function(value) {
-            return date.formatDate(new Date(), 'D MMM YYYY');
+            return date.formatDate(value, 'D MMM YYYY');
         }
     },
     beforeMount() {
